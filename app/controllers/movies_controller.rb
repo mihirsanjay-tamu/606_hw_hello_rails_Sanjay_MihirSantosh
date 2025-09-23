@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
   before_action :set_movie, only: %i[ show edit update destroy ]
 
   # Make sorting helpers available in views
-  helper_method :sort_column, :sort_direction, :toggle_direction
+  helper_method :sort_column, :sort_direction
 
 
   # GET /movies or /movies.json
