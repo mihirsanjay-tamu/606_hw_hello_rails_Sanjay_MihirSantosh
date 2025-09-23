@@ -1,35 +1,21 @@
-<p style="color: green"><%= notice %></p>
-
-<% content_for :title, "Movies" %>
-
-<h1>Movies</h1>
-
-<table>
+<table border="1" style="border-collapse: collapse; width: 100%;">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Rating</th>
-      <th>Release Date</th>
-      <th colspan="3"></th> <!-- for show/edit/delete links -->
+      <th style="border: 1px solid black;">Column 1</th>
+      <th style="border: 1px solid black;">Column 2</th>
+      <th style="border: 1px solid black;">Column 3</th>
     </tr>
   </thead>
-
   <tbody>
-    <% @movies.each do |movie| %>
-      <tr>
-        <td><%= movie.title %></td>
-        <td><%= movie.rating %></td>
-        <td><%= movie.release_date %></td>
-        <td><%= link_to 'Show', movie %></td>
-        <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
-        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-
-  <tfoot>
     <tr>
-      <td colspan="6"><%= link_to 'New Movie', new_movie_path %></td>
+      <td style="border: 1px solid black;">Row 1, Col 1</td>
+      <td style="border: 1px solid black;">Row 1, Col 2</td>
+      <td style="border: 1px solid black;">Row 1, Col 3</td>
     </tr>
-  </tfoot>
+    <tr>
+      <td style="border: 1px solid black;">Row 2, Col 1</td>
+      <td style="border: 1px solid black;">Row 2, Col 2</td>
+      <td style="border: 1px solid black;">Row 2, Col 3</td>
+    </tr>
+  </tbody>
 </table>
