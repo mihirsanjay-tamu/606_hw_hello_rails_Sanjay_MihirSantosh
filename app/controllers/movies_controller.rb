@@ -6,7 +6,15 @@ class MoviesController < ApplicationController
 
   # GET /movies or /movies.json
   def index
-    @movies = Movie.order("#{sort_column} #{sort_direction}")
+    # Store the current sort in session
+    session[:sort] = params[:sort] if params[:sort]
+    session[:direction] = params[:direction] if params[:direction]
+
+    # Use params first, fallback to session
+    sort_col = params[:sort] || session[:sort] || "title"
+    sort_dir = params[:direction] || session[:direction] || "asc"
+
+    @movies = Movie.order("#{sort_col} #{sort_dir}")
   end
 
   # GET /movies/1 or /movies/1.json
@@ -28,7 +36,7 @@ class MoviesController < ApplicationController
 
     respond_to do |format|
       if @movie.save
-        format.html { redirect_to @movie, notice: "Movie was successfully created." }
+        format.html { redirect_to movies_path(sort: session[:sort], direction: session[:direction]), notice: "Movie was successfully created." }
         format.json { render :show, status: :created, location: @movie }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -41,7 +49,7 @@ class MoviesController < ApplicationController
   def update
     respond_to do |format|
       if @movie.update(movie_params)
-        format.html { redirect_to @movie, notice: "Movie was successfully updated.", status: :see_other }
+        format.html { redirect_to movies_path(sort: session[:sort], direction: session[:direction]), notice: "Movie was successfully created." }
         format.json { render :show, status: :ok, location: @movie }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,7 +63,7 @@ class MoviesController < ApplicationController
     @movie.destroy!
 
     respond_to do |format|
-      format.html { redirect_to movies_path, notice: "Movie was successfully destroyed.", status: :see_other }
+      format.html { redirect_to movies_path(sort: session[:sort], direction: session[:direction]), notice: "Movie was successfully created." }
       format.json { head :no_content }
     end
   end

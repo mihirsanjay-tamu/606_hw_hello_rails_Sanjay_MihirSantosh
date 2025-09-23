@@ -29,8 +29,7 @@
         <td><%= link_to 'Show', movie, sort: params[:sort], direction: params[:direction] %></td>
         <td><%= link_to 'Edit', edit_movie_path(movie, sort: params[:sort], direction: params[:direction]) %></td>
         <td>
-          <%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' }, 
-                      params: { sort: params[:sort], direction: params[:direction] } %>
+          <%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' }, params: { sort: params[:sort], direction: params[:direction] } %>
         </td>
       </tr>
     <% end %>

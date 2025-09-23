@@ -1,7 +1,11 @@
 module MoviesHelper
   def toggle_direction(column)
-    if params[:sort] == column
-      params[:direction] == "asc" ? "desc" : "asc"
+    # Use params first, fallback to session
+    current_sort = params[:sort] || session[:sort] || "title"
+    current_direction = params[:direction] || session[:direction] || "asc"
+
+    if current_sort == column
+      current_direction == "asc" ? "desc" : "asc"
     else
       "asc"
     end
