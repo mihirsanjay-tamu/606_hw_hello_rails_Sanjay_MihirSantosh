@@ -7,9 +7,15 @@
 <table>
   <thead>
     <tr>
-      <th><%= link_to "Title", movies_path(sort: "title", direction: toggle_direction("title")) %></th>
-      <th><%= link_to "Rating", movies_path(sort: "rating", direction: toggle_direction("rating")) %></th>
-      <th><%= link_to "Release Date", movies_path(sort: "release_date", direction: toggle_direction("release_date")) %></th>
+      <th>
+        <%= link_to "Title", movies_path(sort: "title", direction: toggle_direction("title")) %>
+      </th>
+      <th>
+        <%= link_to "Rating", movies_path(sort: "rating", direction: toggle_direction("rating")) %>
+      </th>
+      <th>
+        <%= link_to "Release Date", movies_path(sort: "release_date", direction: toggle_direction("release_date")) %>
+      </th>
       <th colspan="3"></th> <!-- for show/edit/delete links -->
     </tr>
   </thead>
@@ -20,16 +26,21 @@
         <td><%= movie.title %></td>
         <td><%= movie.rating %></td>
         <td><%= movie.release_date %></td>
-        <td><%= link_to 'Show', movie %></td>
-        <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
-        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', movie, sort: params[:sort], direction: params[:direction] %></td>
+        <td><%= link_to 'Edit', edit_movie_path(movie, sort: params[:sort], direction: params[:direction]) %></td>
+        <td>
+          <%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' }, 
+                      params: { sort: params[:sort], direction: params[:direction] } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 
   <tfoot>
     <tr>
-      <td colspan="6"> <%= link_to 'New Movie', new_movie_path(request.params.slice(:sort, :direction)) %> </td>
+      <td colspan="6">
+        <%= link_to 'New Movie', new_movie_path(sort: params[:sort], direction: params[:direction]) %>
+      </td>
     </tr>
   </tfoot>
 </table>
