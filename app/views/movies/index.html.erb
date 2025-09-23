@@ -1,46 +1,45 @@
-<p style="color: green"><%= notice %></p>
+<div class="container">
+  <p class="notice"><%= notice %></p>
 
-<% content_for :title, "Movies" %>
+  <h1 class="title">🎬 Movies List</h1>
 
-<h1>Movies</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th class="<%= sorted_class('title') %>">
-        <%= link_to "Title #{sorted_symbol('title')}".html_safe, movies_path(sort: "title", direction: toggle_direction("title")) %>
-      </th>
-      <th class="<%= sorted_class('rating') %>">
-        <%= link_to "Rating #{sorted_symbol('rating')}".html_safe, movies_path(sort: "rating", direction: toggle_direction("rating")) %>
-      </th>
-      <th class="<%= sorted_class('release_date') %>">
-        <%= link_to "Release Date #{sorted_symbol('release_date')}".html_safe, movies_path(sort: "release_date", direction: toggle_direction("release_date")) %>
-      </th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-
-  <tbody>
-    <% @movies.each do |movie| %>
+  <table class="styled-table">
+    <thead>
       <tr>
-        <td><%= movie.title %></td>
-        <td><%= movie.rating %></td>
-        <td><%= movie.release_date %></td>
-        <td><%= link_to 'Show', movie, sort: params[:sort], direction: params[:direction] %></td>
-        <td><%= link_to 'Edit', edit_movie_path(movie, sort: params[:sort], direction: params[:direction]) %></td>
-        <td>
-          <%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' }, params: { sort: params[:sort], direction: params[:direction] } %>
+        <th class="<%= sorted_class('title') %>">
+          <%= link_to "Title #{sorted_symbol('title')}".html_safe, movies_path(sort: "title", direction: toggle_direction("title")) %>
+        </th>
+        <th class="<%= sorted_class('rating') %>">
+          <%= link_to "Rating #{sorted_symbol('rating')}".html_safe, movies_path(sort: "rating", direction: toggle_direction("rating")) %>
+        </th>
+        <th class="<%= sorted_class('release_date') %>">
+          <%= link_to "Release Date #{sorted_symbol('release_date')}".html_safe, movies_path(sort: "release_date", direction: toggle_direction("release_date")) %>
+        </th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @movies.each do |movie| %>
+        <tr>
+          <td><%= movie.title %></td>
+          <td>⭐ <%= movie.rating %></td>
+          <td><%= movie.release_date.strftime("%b %d, %Y") %></td>
+          <td><%= link_to 'Show', movie, class: "btn-small" %></td>
+          <td><%= link_to 'Edit', edit_movie_path(movie), class: "btn-small" %></td>
+          <td>
+            <%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-small btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+
+    <tfoot>
+      <tr>
+        <td colspan="6">
+          <%= link_to 'New Movie', new_movie_path, class: "btn" %>
         </td>
       </tr>
-    <% end %>
-  </tbody>
-
-  <tfoot>
-    <tr>
-      <td colspan="6">
-        <%= link_to 'New Movie', new_movie_path(sort: params[:sort], direction: params[:direction]) %>
-      </td>
-    </tr>
-  </tfoot>
-</table>
+    </tfoot>
+  </table>
+</div>
