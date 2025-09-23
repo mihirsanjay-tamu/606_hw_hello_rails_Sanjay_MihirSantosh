@@ -9,16 +9,64 @@
  * Consider organizing styles into separate files for maintainability.
  */
 /* Highlight sorted column */
-th.sorted-asc {
-  background-color: #d1e7dd; /* light green for ascending */
+/* Container around everything */
+.container {
+  margin: 20px auto;
+  max-width: 900px;
+  padding: 15px;
+  font-family: Arial, sans-serif;
 }
 
-th.sorted-desc {
-  background-color: #f8d7da; /* light red for descending */
+/* Table styling */
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-/* Optional: make arrow symbol a bit more visible */
-th a {
+.styled-table th, .styled-table td {
+  padding: 10px;
+  text-align: left;
+}
+
+/* Row striping */
+.styled-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Hover effect */
+.styled-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Highlight sorted column */
+.sorted-asc {
+  background-color: #d4edda; /* greenish */
+}
+
+.sorted-desc {
+  background-color: #f8d7da; /* reddish */
+}
+
+/* Buttons */
+.btn, .btn-small {
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: #0d6efd;
+  color: white;
   text-decoration: none;
-  color: inherit;
+}
+
+.btn:hover, .btn-small:hover {
+  background-color: #0b5ed7;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #b02a37;
 }
