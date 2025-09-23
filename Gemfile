@@ -41,7 +41,7 @@ group :development, :test do
 
   # Use sqlite3 as the database for Active Record
   gem "sqlite3", ">= 2.1"
-  
+
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 end
@@ -49,6 +49,8 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-  gem 'pg', '~> 1.6'
+end
 
+group :production do
+  gem 'pg', '~> 1.6'
 end
