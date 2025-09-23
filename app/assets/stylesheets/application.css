@@ -8,3 +8,17 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+/* Highlight sorted column */
+th.sorted-asc {
+  background-color: #d1e7dd; /* light green for ascending */
+}
+
+th.sorted-desc {
+  background-color: #f8d7da; /* light red for descending */
+}
+
+/* Optional: make arrow symbol a bit more visible */
+th a {
+  text-decoration: none;
+  color: inherit;
+}
